@@ -23,17 +23,17 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Atten: 0.9
+    - _Atten: 0.962
     - _Base: 100
-    - _CenterDepth: 0.5
+    - _CenterDepth: 8
     - _Depth: 10
     - _MinDepth: 4.5
-    - _OutDepth: 1
+    - _OutDepth: 0
     - _Power: 1
     - _Size: 2.18
-    - _SizeFactor: 1
+    - _SizeFactor: 12
     - _Type: 1
     - _dd: 0.5
     - _dk: 0.5
     m_Colors:
-    - _ClickPoint: {r: 0.4820144, g: 0.7877698, b: 0, a: 0}
+    - _ClickPoint: {r: 0.3905447, g: 0.48264244, b: 0, a: 0}

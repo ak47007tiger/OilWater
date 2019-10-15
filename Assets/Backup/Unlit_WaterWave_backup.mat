@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: DC_Shader_ShaderDemo_WaterWaveShow
-  m_Shader: {fileID: 4800000, guid: 5a1790c6b4a8f6f4aa288020bca7a673, type: 3}
-  m_ShaderKeywords: 
+  m_Name: Unlit_WaterWave_backup
+  m_Shader: {fileID: 4800000, guid: 2667708ccc36ab74baa54aed578fe3b4, type: 3}
+  m_ShaderKeywords: _TYPE_TOY
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -19,13 +19,21 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 0ff7c131e3f297140ad066cf0e9878bf, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _WaveTex:
-        m_Texture: {fileID: 8600000, guid: b6edf4be01ecd9940bc664e077e208e9, type: 2}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Atten: 0.95
     - _Base: 100
-    m_Colors: []
+    - _CenterDepth: 8
+    - _Depth: 10
+    - _MinDepth: 4.5
+    - _OutDepth: 4.5
+    - _Power: 1
+    - _Size: 2.18
+    - _SizeFactor: 2
+    - _Type: 0
+    - _dd: 0.5
+    - _dk: 0.5
+    m_Colors:
+    - _ClickPoint: {r: 0.42651594, g: 0.7548818, b: 0, a: 0}
