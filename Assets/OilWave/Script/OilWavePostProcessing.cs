@@ -1,109 +1,142 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
 public class OilWavePostProcessing : MonoBehaviour
 {
-  public CustomRenderTexture texture;
-  public Material waveMat;
-  public Material surfaceMat;
-  public bool handleInput = true;
+    public CustomRenderTexture mCrTexture;
+    public Material mWaveMat;
+    public Material mSurfaceMat;
 
-  public Vector2 center = new Vector2(0.5f, 0.5f);
-  public Vector2 range = new Vector2(1, 1);
+    /// <summary>
+    /// 是否响应控制鼠标或者手指的点击
+    /// </summary>
+    public bool handleInput = true;
 
-  private CustomRenderTextureUpdateZone[] updateZones;
+    public Vector2 center = new Vector2(0.5f, 0.5f);
+    public Vector2 range = new Vector2(1, 1);
 
-  private Queue<Vector2> pointQueue;
+    private CustomRenderTextureUpdateZone[] updateZones;
 
-  private Vector2 lastPoint;
+    private Queue<Vector2> pointQueue;
 
-  void Start()
-  {
-    Application.targetFrameRate = 60;
+    private Vector2 lastPoint;
 
-    pointQueue = new Queue<Vector2>();
-
-    updateZones = new CustomRenderTextureUpdateZone[] { CreateUpdateZone() };
-    texture.Initialize();
-
-    // InvokeRepeating("Test", 0, 1);
-  }
-
-  void Test()
-  {
-    var points = new Vector2[10];
-    for (var i = 0; i < points.Length; i++)
+    public void UpdateRenderInformation(CustomRenderTexture cTexture, Material wave, Material show)
     {
-      points[i] = new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f));
-    }
-    PushPoints(points);
-  }
-
-  void OnRenderImage(RenderTexture src, RenderTexture dest)
-  {
-    Graphics.Blit(src, dest, surfaceMat);
-  }
-
-  void Update()
-  {
-    if (handleInput)
-    {
-      CreatePoints();
+        mCrTexture = cTexture;
+        mWaveMat = wave;
+        mSurfaceMat = show;
     }
 
-    texture.ClearUpdateZones();
-    if (pointQueue.Count > 0)
+    public void UpdateRenderInformation(CustomRenderTexture cTexture, Material wave)
     {
-      var point = pointQueue.Dequeue();
-      waveMat.SetVector("_ClickPoint", new Vector4(point.x, point.y, 0, 0));
-      texture.SetUpdateZones(updateZones);
-      if (point == lastPoint)
-      {
-        texture.Update();
-      }
-      lastPoint = point;
+        mCrTexture = cTexture;
+        mWaveMat = wave;
     }
-    else
-    {
-      texture.Update();
-    }
-  }
 
-  bool CreatePoints()
-  {
-    var points = EffectInput.GetAllPoints();
-    if (points.Length == 0)
+    public void UpdateRenderInformation(Material wave)
     {
-      return false;
+        mWaveMat = wave;
     }
-    PushPoints(points);
-    return true;
-  }
 
-  public void PushPoints(Vector2[] points)
-  {
-    if (points == null || points.Length == 0)
+    void Start()
     {
-      return;
+        pointQueue = new Queue<Vector2>();
+
+        updateZones = new CustomRenderTextureUpdateZone[] {CreateUpdateZone()};
+        mCrTexture.Initialize();
+        // InvokeRepeating("Test", 0, 1);
     }
-    for (var i = 0; i < points.Length; i++)
+
+    void Test()
     {
-      pointQueue.Enqueue(points[i]);
+        var points = new Vector2[10];
+        for (var i = 0; i < points.Length; i++)
+        {
+            points[i] = new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f));
+        }
+
+        PushPoints(points);
     }
-  }
 
-  CustomRenderTextureUpdateZone CreateUpdateZone()
-  {
-    var clickZone = new CustomRenderTextureUpdateZone();
-    clickZone.needSwap = true;
-    clickZone.passIndex = 1;
-    clickZone.rotation = 0f;
-    clickZone.updateZoneCenter = new Vector2(center.x, center.y);
-    clickZone.updateZoneSize = new Vector2(range.x, range.y);
-    return clickZone;
-  }
+    void OnRenderImage(RenderTexture src, RenderTexture dest)
+    {
+        if (mSurfaceMat != null)
+        {
+            Graphics.Blit(src, dest, mSurfaceMat);
+        }
+        else
+        {
+            Graphics.Blit(src,dest);
+        }
+    }
 
+    void Update()
+    {
+        if (handleInput)
+        {
+            CreatePoints();
+        }
+
+        if (null == mCrTexture || mWaveMat == null)
+        {
+            return;
+        }
+
+        mCrTexture.ClearUpdateZones();
+        if (pointQueue.Count > 0)
+        {
+            var point = pointQueue.Dequeue();
+            mWaveMat.SetVector("_ClickPoint", new Vector4(point.x, point.y, 0, 0));
+            mCrTexture.SetUpdateZones(updateZones);
+            if (point == lastPoint)
+            {
+                mCrTexture.Update();
+            }
+
+            lastPoint = point;
+        }
+        else
+        {
+            mCrTexture.Update();
+        }
+    }
+
+    bool CreatePoints()
+    {
+        var points = EffectInput.GetAllPoints();
+        if (points.Length == 0)
+        {
+            return false;
+        }
+
+        PushPoints(points);
+        return true;
+    }
+
+    public void PushPoints(Vector2[] points)
+    {
+        if (points == null || points.Length == 0)
+        {
+            return;
+        }
+
+        for (var i = 0; i < points.Length; i++)
+        {
+            pointQueue.Enqueue(points[i]);
+        }
+    }
+
+    CustomRenderTextureUpdateZone CreateUpdateZone()
+    {
+        var clickZone = new CustomRenderTextureUpdateZone();
+        clickZone.needSwap = true;
+        clickZone.passIndex = 1;
+        clickZone.rotation = 0f;
+        clickZone.updateZoneCenter = new Vector2(center.x, center.y);
+        clickZone.updateZoneSize = new Vector2(range.x, range.y);
+        return clickZone;
+    }
 }

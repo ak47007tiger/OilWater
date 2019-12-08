@@ -414,6 +414,8 @@ GameObject:
   - component: {fileID: 1381384277}
   - component: {fileID: 1381384276}
   - component: {fileID: 1381384279}
+  - component: {fileID: 1381384280}
+  - component: {fileID: 1381384281}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -492,8 +494,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb78cb448f74714c909d6c0944ab8ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texture: {fileID: 8600000, guid: b6edf4be01ecd9940bc664e077e208e9, type: 2}
+  mCrTexture: {fileID: 0}
+  mWaveMat: {fileID: 0}
+  mSurfaceMat: {fileID: 0}
+  handleInput: 1
   center: {x: 0.5, y: 0.5}
   range: {x: 1, y: 1}
-  waveMat: {fileID: 2100000, guid: b6072dc1651478b4eb5c4b86cb8565a2, type: 2}
-  surfaceMat: {fileID: 2100000, guid: 54670baf082767a4ca2125e9f9c6bbc9, type: 2}
+--- !u!114 &1381384280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1381384275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d86f287c3f416a4bab6b4c031ce8850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mSizeScale: 0.5
+--- !u!114 &1381384281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1381384275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8c9f829305208448bb16acb2a7ff7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mWidthKey: PR_WIDTH
+  mHeightKey: PR_HEIGHT
+  mMaterialPath: wave_01

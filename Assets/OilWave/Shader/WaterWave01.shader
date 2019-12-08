@@ -7,7 +7,6 @@
     [KeywordEnum(Toy, Classic)] _Type("Type",float)=0
     _OutDepth("OutDepth", Range(0,100))=4
     _CenterDepth("CenterDepth", Range(0,100))=1
-    [HideInInspector]
     _Base("Base", float)=100
     _SizeFactor("SizeFactor", float)=1
     _Atten("Atten",Range(0,1))=0.97
@@ -20,7 +19,7 @@
 
   #pragma multi_compile _TYPE_TOY _TYPE_CLASSIC
 
-  #define velPropagation 1.0
+  #define velPropagation 5
 
   float4 _ClickPoint;
   float _OutDepth;
@@ -34,6 +33,11 @@
 
     float du = velPropagation / _CustomRenderTextureWidth;
     float dv = velPropagation / _CustomRenderTextureHeight;
+    // dv = du * 4;
+
+    du = 0.0005;
+    // dv = 10 * du;
+    dv = du * (_CustomRenderTextureWidth / _CustomRenderTextureHeight);
 
     float3 e = float3(du, dv, 0);
 

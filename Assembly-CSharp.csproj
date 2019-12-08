@@ -61,9 +61,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\FilePackage\Script\SimpleAssetManager\AssetManager.cs" />
+    <Compile Include="Assets\FilePackage\Script\SimpleAssetManager\GuiStringExtension.cs" />
+    <Compile Include="Assets\FilePackage\Script\SimpleAssetManager\PerformanceTesting.cs" />
+    <Compile Include="Assets\FilePackage\Script\SimpleAssetManager\SimpleAssetBundle.cs" />
+    <Compile Include="Assets\FilePackage\Script\SimpleAssetManager\xxHash.cs" />
+    <Compile Include="Assets\FilePackage\Script\TestAssetManager.cs" />
+    <Compile Include="Assets\OilWave\Script\ConfigManager.cs" />
+    <Compile Include="Assets\OilWave\Script\DemoForResolutionAdapt.cs" />
     <Compile Include="Assets\OilWave\Script\EffectInput.cs" />
     <Compile Include="Assets\OilWave\Script\OilWavePostProcessing.cs" />
+    <Compile Include="Assets\OilWave\Script\ProcessingConfig.cs" />
+    <Compile Include="Assets\OilWave\Script\WaterManager.cs" />
     <Compile Include="Assets\OilWave\Script\WaterWave01.cs" />
+    <Compile Include="Assets\TestRuntimeDir\TestRuntimeDir.cs" />
     <None Include="Assets\OilWave\Shader\WaterWaveShow.shader" />
     <None Include="Assets\OilWave\Shader\WaterWave01.shader" />
     <Reference Include="UnityEditor.StandardEvents">

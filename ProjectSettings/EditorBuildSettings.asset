@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/OilWave/Loading.unity
+    guid: b42a66d6e33ef824982cef76b93d96e4
+  - enabled: 1
+    path: Assets/OilWave/Demo.unity
+    guid: f0c0deb923f686448ae0d98f2c7b239e
+  - enabled: 1
+    path: Assets/OilWave/Demo1.unity
+    guid: c4f3d6e323a83d346ba8f2efbd247e56
+  - enabled: 1
+    path: Assets/OilWave/Demo2.unity
+    guid: d37620ff745661744a4685731ac7dfc2
   m_configObjects: {}
