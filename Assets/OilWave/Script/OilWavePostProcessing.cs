@@ -47,6 +47,7 @@ public class OilWavePostProcessing : MonoBehaviour
 
         updateZones = new CustomRenderTextureUpdateZone[] {CreateUpdateZone()};
         mCrTexture.Initialize();
+        mCrTexture.SetUpdateZones(updateZones);
         // InvokeRepeating("Test", 0, 1);
     }
 

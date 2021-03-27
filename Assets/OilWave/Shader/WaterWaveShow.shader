@@ -63,10 +63,15 @@
     float2 q = i.uv;
     float3 e = float3(_WaveTex_TexelSize.xy,0);
     // e.x = 1.0/11520.0;
-
+	
+	//z一直都是0
+	//bottom
     float p10 = tex2D(_WaveTex, q-e.zy).x;
+	//left
     float p01 = tex2D(_WaveTex, q-e.xz).x;
+	//right
     float p21 = tex2D(_WaveTex, q+e.xz).x;
+	//top
     float p12 = tex2D(_WaveTex, q+e.zy).x;
 
     p10 *= _Base;
@@ -83,9 +88,9 @@
     // return fixed4(lightDir, 1);
     fixed3 specularCol = _SpecularK * pow(max(dot(normal.xyz, normalize(lightDir + viewDir)), 0), _Shininess);
     // return fixed4(specularCol,1);
-    fixed4 c = tex2D(_MainTex, q + grad.xy*.35);
-    return fixed4(c.rgb + specularCol, c.a);
-    // return c;
+    //fixed4 c = tex2D(_MainTex, q + grad.xy*.35);
+	return fixed4(c.rgb + specularCol, c.a);
+    //return c;
   }
   ENDCG
 
